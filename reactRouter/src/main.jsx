@@ -8,6 +8,7 @@ import About from './components/About/About.jsx'
 import Contact from './components/ContactUs/Contact.jsx'
 import User from './components/User/User.jsx'
 import Github, { GihubDataLoader } from './components/Github/Github.jsx'
+import Error from './components/Error/Error.jsx'
 
 // const router = createBrowserRouter([
 //   {
@@ -28,7 +29,7 @@ import Github, { GihubDataLoader } from './components/Github/Github.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout />}>
+    <Route path='/' element={<Layout />} errorElement={<Error />}>
       <Route path='' element={<Home />} />
       <Route path='about' element={<About />} />
       <Route path='contact' element={<Contact />} />
