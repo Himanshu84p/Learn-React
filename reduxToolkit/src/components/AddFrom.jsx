@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../features/todo/todoSlice";
+import { addTodo, updateTodo } from "../features/todo/todoSlice";
 
 function AddFrom() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const editTodo = useSelector((state) => state.todos.editingTodoText)
+  const [isEditing, setIsEditing] = useState(false);
+  let editText = useSelector((state) => state.editingTodoText);
+  const editTodoId = useSelector((state) => state.editingTodoId);
 
-  useEffect(() =>{
-    if(editTodo) {
-      setInput(editTodo)
+  useEffect(() => {
+    if (editText != "") {
+      setIsEditing(true);
+      setInput(editText);
+      editText = ""
+    } else {
+      setIsEditing(false);
+      setInput("");
     }
-  },[editTodo])
+  }, [editText]);
 
   const addTodoHandler = (e) => {
     e.preventDefault();
 
     //adding todo
-    dispatch(addTodo(input));
+    if (isEditing) {
+      dispatch(updateTodo({ id: editTodoId, text: input }));
+    } else {
+      dispatch(addTodo(input));
+    }
     setInput("");
+    setIsEditing(false);
   };
   return (
     <form onSubmit={addTodoHandler} className="space-x-3 mt-12">
@@ -33,7 +45,7 @@ function AddFrom() {
         type="submit"
         className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
       >
-        { editTodo ? 'Update Todo' : 'Add Todo'}
+        {isEditing ? "Update Todo" : "Add Todo"}
       </button>
     </form>
   );
