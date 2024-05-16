@@ -18,19 +18,22 @@ function Todos() {
             key={todo.id}
           >
             <div className="flex gap-2">
-              <input
-                type="checkbox"
-                checked={todo.isCompleted}
-                onChange={() => dispatch(completedTodo(todo.id))}
-              />
-              <div
-                className={`text-white ${
-                  todo.isCompleted
-                    ? "line-through bg-red-400 text-black px-4 rounded"
-                    : "px-4"
-                }`}
-              >
-                {todo.text}
+              
+              <div class="checkboxes__item">
+                <label class="checkbox style-d">
+                  <input type="checkbox" checked={todo.isCompleted}
+                onChange={() => dispatch(completedTodo(todo.id))} />
+                  <div class="checkbox__checkmark"></div>
+                  <div
+                    className={`text-white text-2xl checkbox__body ${
+                      todo.isCompleted
+                        ? "line-through text-black opacity-50 px-4 rounded"
+                        : "px-4"
+                    }`}
+                  >
+                    {todo.text}
+                  </div>
+                </label>
               </div>
             </div>
             <div>
