@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Logo, Button, Input } from "./index";
 import { login as authLogin } from "../store/authSlice";
@@ -23,13 +23,13 @@ function Login() {
         navigate("/");
       }
     } catch (error) {
-      setError(error.message)
+      setError(error.message);
     }
   };
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex flex-col items-center justify-center w-full">
       <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
+        className={`mx-auto my-8 w-full max-w-lg bg-white shadow-lg rounded-xl p-10 border border-black/10`}
       >
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">

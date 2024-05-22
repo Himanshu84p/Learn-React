@@ -11,7 +11,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Login from "./pages/Login.jsx";
-import Signup from "./pages/Signup.jsx";
+import SignUp from "./pages/SignUp.jsx";
 import AllPost from "./pages/AllPost.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import EditPost from "./pages/EditPost.jsx";
@@ -19,7 +19,7 @@ import Home from "./pages/Home.jsx";
 import { AuthLayout } from "./components/index.js";
 import Post from "./pages/Post.jsx";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Home />} />
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         path="signup"
         element={
           <AuthLayout authentication={false}>
-            <Signup />
+            <SignUp />
           </AuthLayout>
         }
       />
@@ -68,8 +68,8 @@ const router = createBrowserRouter([
       />
       <Route path="post/:slug" element={<Post />} />
     </Route>
-  ),
-]);
+  )
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

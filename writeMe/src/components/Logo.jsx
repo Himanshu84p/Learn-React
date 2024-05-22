@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import AppLogo from "../assets/appLogo.png";
 
-function Logo({width = '100px'}) {
+function Logo({ width = "5px" }) {
   return (
-    <div>Logo</div>
-  )
+    <div>
+      <img width={width} src={AppLogo} alt="Logo" />
+    </div>
+  );
 }
 
-export default Logo
+export default Logo;
