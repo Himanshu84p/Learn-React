@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.app-comp {
+    background-image: url('./assets/background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}

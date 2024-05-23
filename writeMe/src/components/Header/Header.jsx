@@ -37,7 +37,7 @@ function Header() {
 
   ]
   return (
-    <header className='sticky top-0 py-3 shadow-sm bg-blue-300 text-black'>
+    <header style={{backgroundColor:"#7AB2B2"}} className='sticky top-0 py-3 shadow-sm text-black z-50'>
       <Container>
         <nav className='flex'>
           <div className='mr-4'>
@@ -49,7 +49,7 @@ function Header() {
           <ul className='flex ml-auto'>
             {navItems.map((item) => 
             item.active? (<li key={item.name} >
-              <button onClick={() => {navigate(item.slug)}} className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'>
+              <button onClick={() => {navigate(item.slug)}} className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full active:bg-blue-200'>
                 {item.name}
               </button>
             </li>) : null

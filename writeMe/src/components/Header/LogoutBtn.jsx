@@ -1,18 +1,24 @@
-import React from 'react'
-import {useDispatch} from 'react-redux'
-import authService from '../../appwrite/auth'
+import React from "react";
+import { useDispatch } from "react-redux";
+import authService from "../../appwrite/auth";
+import { logout } from "../../store/authSlice";
 
 function LogoutBtn() {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const handleLogout = () => {
-        authService.logout().then(() => {
-            dispatch(logout())
-        })
-    }
+  const handleLogout = () => {
+    authService.logout().then(() => {
+      dispatch(logout());
+    });
+  };
   return (
-    <button className='bg-blue-400 text-black hover:scale-110 shadow-md' onClick={handleLogout}>Logout</button>
-  )
+    <button
+      className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full active:bg-blue-200"
+      onClick={handleLogout}
+    >
+      Logout
+    </button>
+  );
 }
 
-export default LogoutBtn    
+export default LogoutBtn;

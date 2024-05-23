@@ -17,7 +17,7 @@ export class Service {
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
-      return await this.client.databases.createDocument(
+      return await this.databases.createDocument(
         conf.appWriteDatabaseId,
         conf.appWriteCollectionId,
         slug,
@@ -37,7 +37,8 @@ export class Service {
 
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
-      return await this.client.databases.updateDocument(
+      console.log(content)
+      return await this.databases.updateDocument(
         conf.appWriteDatabaseId,
         conf.appWriteCollectionId,
         slug,
@@ -56,42 +57,40 @@ export class Service {
 
   async deletePost(slug) {
     try {
-        await this.client.databases.deleteDocument(
-            conf.appWriteDatabaseId,
-            conf.appWriteCollectionId,
-            slug
-        )
-        return true
+      await this.databases.deleteDocument(
+        conf.appWriteDatabaseId,
+        conf.appWriteCollectionId,
+        slug
+      );
+      return true;
     } catch (error) {
-        console.log("deleting post error" , error);
-        return false
+      console.log("deleting post error", error);
+      return false;
     }
   }
 
   async getPost(slug) {
     try {
-        return await this.client.databases.getDocument(
-            conf.appWriteDatabaseId,
-            conf.appWriteCollectionId,
-            slug
-        )
+      return await this.databases.getDocument(
+        conf.appWriteDatabaseId,
+        conf.appWriteCollectionId,
+        slug
+      );
     } catch (error) {
-        console.log("get post error", error)
-        return false
+      console.log("get post error", error);
+      return false;
     }
-
   }
 
-  async getPosts(queries = [Query.equal("status","active")]) {
+  async getPosts(queries = [Query.equal("status", "active")]) {
     try {
-        return await this.client.databases.listDocuments(
-            conf.appWriteDatabaseId,
-            conf.appWriteCollectionId,
-            queries,
-        )
-        
+      return await this.databases.listDocuments(
+        conf.appWriteDatabaseId,
+        conf.appWriteCollectionId,
+        queries
+      );
     } catch (error) {
-       console.log("get posts error", error) 
+      console.log("get posts error", error);
     }
   }
 
@@ -99,36 +98,35 @@ export class Service {
 
   async uploadFile(file) {
     try {
-
-        return await this.storage.createFile(
-            conf.appWriteBucketId,
-            ID.unique(),
-            file
-        )
+      return await this.storage.createFile(
+        conf.appWriteBucketId,
+        ID.unique(),
+        file
+      );
     } catch (error) {
-        console.log("file upload error", error)
-        return false
+      console.log("file upload error", error);
+      return false;
     }
   }
 
   async deleteFile(fileId) {
     try {
-        await this.storage.deleteFile(
-            conf.appWriteBucketId,
-            fileId
-        )
-
+      await this.storage.deleteFile(conf.appWriteBucketId, fileId);
     } catch (error) {
-        console.log("delete file error", error);
-        return false 
+      console.log("delete file error", error);
+      return false;
     }
   }
 
   getFilePreview(fileId) {
-    return this.storage.getFilePreview(
-        conf.appWriteBucketId,
-        fileId
-    )
+    
+    try {
+      console.log("file id",fileId)
+      return this.storage.getFilePreview(conf.appWriteBucketId, fileId);
+    } catch (error) {
+    console.log("preview errror")
+      throw error
+    }
   }
 }
 

@@ -3,9 +3,11 @@ import appwriteService from "../appwrite/config";
 import { Container, PostCard } from "../components/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const userData = useSelector((state) => state.auth.userData)
 
   useEffect(() => {
     appwriteService.getPosts([]).then((posts) => {
@@ -15,7 +17,7 @@ function Home() {
     });
   }, []);
 
-  if (posts.length === 0) {
+  if (userData === null) {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>

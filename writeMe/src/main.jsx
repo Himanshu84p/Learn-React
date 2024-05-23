@@ -49,7 +49,7 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="add-posts"
+        path="add-post"
         element={
           <AuthLayout authentication>
             {" "}

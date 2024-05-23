@@ -5,6 +5,7 @@ import { login, logout } from "./store/authSlice";
 import { Header, Footer } from "./components/index.js";
 import { Outlet } from "react-router-dom";
 
+
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -23,10 +24,10 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className="flex flex-wrap content-between bg-white">
+    <div className={`flex flex-wrap content-between`}  style={{backgroundColor:"#EEF7FF"}}>
       <div className="w-full block">
         <Header />
-        <main style={{height:"70vh"}} className="">
+        <main style={{minHeight:"70vh"}} className="">
           <Outlet />
         </main>
         <Footer />

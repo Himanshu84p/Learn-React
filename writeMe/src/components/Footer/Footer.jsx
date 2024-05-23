@@ -4,7 +4,7 @@ import Logo from "../Logo.jsx";
 
 function Footer() {
   return (
-    <section className="overflow-hidden py-10 bg-blue-300 border border-t-2 border-t-black w-full">
+    <section style={{backgroundColor:"#7AB2B2"}} className="overflow-hidden py-10 border border-t-2 border-t-black w-full">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="-m-6 flex flex-wrap">
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
@@ -14,7 +14,7 @@ function Footer() {
               </div>
               <div>
                 <p className="text-sm text-gray-600">
-                  &copy; Copyright 2023. All Rights Reserved by DevUI.
+                  &copy; Copyright 2023. All Rights Reserved by WriteMe.
                 </p>
               </div>
             </div>
