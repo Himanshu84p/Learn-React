@@ -15,7 +15,7 @@ function App() {
       .getCurrUser()
       .then((userData) => {
         if (userData) {
-          dispatch(login({ userData }));
+          dispatch(login(userData));
         } else {
           dispatch(logout());
         }
@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className={`flex flex-wrap content-between`}  style={{backgroundColor:"#EEF7FF"}}>
+    <div className={`flex flex-wrap content-between  `}  style={{backgroundColor:"#31363F"}}>
       <div className="w-full block">
         <Header />
         <main style={{minHeight:"80vh"}} className="">

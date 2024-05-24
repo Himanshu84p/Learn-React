@@ -18,6 +18,7 @@ import EditPost from "./pages/EditPost.jsx";
 import Home from "./pages/Home.jsx";
 import { AuthLayout } from "./components/index.js";
 import Post from "./pages/Post.jsx";
+import MyPost from './pages/MyPost.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,15 @@ const router = createBrowserRouter(
           <AuthLayout authentication>
             {" "}
             <AllPost />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="my-posts"
+        element={
+          <AuthLayout authentication>
+            {" "}
+            <MyPost />
           </AuthLayout>
         }
       />

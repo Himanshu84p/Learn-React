@@ -14,14 +14,15 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   const login = async (data) => {
-    console.log(data);
+    // console.log(data);
     setError("");
     setLoading(true);
     try {
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrUser();
-        if (userData) dispatch(authLogin());
+        console.log("login data",userData);
+        if (userData) dispatch(authLogin(userData));
         navigate("/");
         setLoading(false);
       }

@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Container, PostCard } from "../components/index";
 import appwriteService from "../appwrite/config";
+import { useSelector } from "react-redux";
+
+
 
 function AllPost() {
-  const [posts, setPosts] = useState([]);
+  const [myPosts, setMyPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const userData = useSelector((state) => state.auth.userData);
 
   //useEffect for fetching all the posts
   useEffect(() => {
@@ -13,11 +18,21 @@ function AllPost() {
       try {
         const posts = await appwriteService.getPosts([]);
         if (posts) {
-          setPosts(posts.documents);
+          console.log("user Data here", userData);
+          console.log("post", posts.documents);
+          if (userData && posts.documents) {
+            const filteredPosts = posts.documents.filter(
+              (post) => post.userId === userData.$id
+            );
+
+            console.log(filteredPosts);
+            setMyPosts(filteredPosts);
+          }
         }
       } catch (err) {
         setError(err.message);
       } finally {
+        console.log(myPosts);
         setLoading(false);
       }
     };
@@ -36,16 +51,25 @@ function AllPost() {
   if (error) {
     return <div className="text-2xl text-red">Error: {error}</div>;
   }
+
+  if (myPosts.length === 0) {
+    return (
+      <div className="text-2xl text-black text-center py-10">
+        No Post uploaded
+      </div>
+    );
+  }
   return (
     <div className="w-full py-8">
       <Container>
         <div className="flex flex-wrap">
-          {posts.map((post) => (
+          {myPosts.map((post) => (
             <div key={post.$id} className="p-2 w-1/4">
-              <PostCard post={post} allPost={true} />
+              <PostCard post ={post} allPost={false} />
             </div>
           ))}
         </div>
+        
       </Container>
     </div>
   );
