@@ -30,7 +30,7 @@ function SignUp() {
         }
       }
     } catch (error) {
-      setError("user signup error", error.message);
+      setError(error.message);
       console.log(error);
     }
   };
@@ -91,6 +91,10 @@ function SignUp() {
                     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                     "Email address must be a valid address.",
                 },
+                unique : {
+                  value : true,
+                  message : "Email id already registered"
+                }
               })}
             />
             {errors.email && (

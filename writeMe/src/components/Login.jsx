@@ -11,21 +11,30 @@ function Login() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const login = async (data) => {
     console.log(data);
     setError("");
+    setLoading(true);
     try {
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrUser();
         if (userData) dispatch(authLogin());
         navigate("/");
+        setLoading(false);
       }
     } catch (error) {
       setError(error.message);
     }
   };
+  //loading show
+  if (loading) {
+    return (
+      <div className="text-2xl text-black text-center py-10">Loading...</div>
+    );
+  }
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div

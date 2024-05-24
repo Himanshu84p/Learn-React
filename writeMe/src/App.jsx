@@ -27,7 +27,7 @@ function App() {
     <div className={`flex flex-wrap content-between`}  style={{backgroundColor:"#EEF7FF"}}>
       <div className="w-full block">
         <Header />
-        <main style={{minHeight:"70vh"}} className="">
+        <main style={{minHeight:"80vh"}} className="">
           <Outlet />
         </main>
         <Footer />

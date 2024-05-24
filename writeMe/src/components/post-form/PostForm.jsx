@@ -48,6 +48,7 @@ function PostForm({ post }) {
         : null;
 
       if (file) {
+        console.log("inside create post",userData)
         const fileId = file.$id;
         data.featuredImage = fileId;
         const dbPost = await appwriteService.createPost({

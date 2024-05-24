@@ -21,7 +21,7 @@ function Home() {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
-          <div className="flex justify-center items-center bg-white">
+          <div className="flex justify-center items-center">
             <div className="p-6 bg-gray-200 rounded-lg shadow-lg text-center">
               <FontAwesomeIcon
                 icon={faLock}
